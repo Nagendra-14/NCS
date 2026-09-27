@@ -715,20 +715,20 @@
   }
 
   async function apiPost(endpoint, payload) {
-    var url1 = '/api/' + endpoint;
-    var url2 = '/api/' + endpoint + '.js';
-    try {
-      var r = await fetch(url1, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (r.status !== 404) return r;
-    } catch (e) {}
-    return await fetch(url2, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    var urls = ['/api/' + endpoint + '.js', '/api/' + endpoint];
+    for (var i = 0; i < urls.length; i++) {
+      try {
+        var r = await fetch(urls[i], {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (r.status !== 404) return r;
+      } catch (e) {}
+    }
+    return new Response(JSON.stringify({ error: 'API endpoint not reachable. Please check Vercel deployment logs.' }), {
+      status: 404,
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 
