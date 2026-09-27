@@ -11,8 +11,8 @@ if (fs.existsSync(path.join(__dirname, '.env'))) {
   }
 }
 
-const createOrderHandler = require('./create-order');
-const verifyPaymentHandler = require('./verify-payment');
+const createOrderHandler = require('./api/create-order');
+const verifyPaymentHandler = require('./api/verify-payment');
 
 function wrapResponse(res) {
   res.status = function (code) {
