@@ -740,7 +740,7 @@
     if (finalPriceRupees === 0){
       setStatus('Registering your free enrollment…', false);
       try {
-        var res = await fetch('/api/create-order', {
+        var res = await fetch('/api/create-order.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -770,7 +770,7 @@
 
     let order;
     try {
-      var res = await fetch('/api/create-order', {
+      var res = await fetch('/api/create-order.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -818,7 +818,7 @@
       handler: async function (response){
         setStatus('Verifying payment…', false);
         try {
-          var verifyRes = await fetch('/api/verify-payment', {
+          var verifyRes = await fetch('/api/verify-payment.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

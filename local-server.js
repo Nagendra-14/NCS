@@ -45,7 +45,7 @@ const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = parsedUrl.pathname;
 
-  if (pathname === '/api/create-order') {
+  if (pathname === '/api/create-order' || pathname === '/api/create-order.js') {
     let body = '';
     req.on('data', (chunk) => { body += chunk; });
     req.on('end', () => {
@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (pathname === '/api/verify-payment') {
+  if (pathname === '/api/verify-payment' || pathname === '/api/verify-payment.js') {
     let body = '';
     req.on('data', (chunk) => { body += chunk; });
     req.on('end', () => {
