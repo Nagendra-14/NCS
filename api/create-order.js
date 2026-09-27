@@ -12,16 +12,7 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-  if (!keyId || !keySecret) {
-    res.status(401).json({ error: 'Razorpay credentials are not configured on the server.' });
-    return;
-  }
-
   const { amount, currency, receipt, plan, promoCode, customer } = req.body || {};
-
   const isFriend = (promoCode || '').toString().trim().toUpperCase() === 'MKCUK';
   
   let targetPriceRupees;
@@ -38,6 +29,14 @@ module.exports = async function handler(req, res) {
       free: true,
       message: 'Free enrollment verified successfully.'
     });
+    return;
+  }
+
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+  if (!keyId || !keySecret) {
+    res.status(401).json({ error: 'Razorpay credentials are not configured on the server. Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in Vercel environment variables.' });
     return;
   }
 
