@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nagendra Consultancy Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --white: #FFFFFF;
+    --pink: #FBD3DE;
+    --pink-soft: #FDE9EF;
+    --pink-line: #F3B9CA;
+    --red: #E23A56;
+    --red-deep: #B81E38;
+    --ink: #2B1418;
+    --ink-soft: #8A6870;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  *,*::before,*::after{ box-sizing: inherit; }
+
+  :root:not([data-theme]),
+  :root[data-theme="light"],
+  :root[data-theme="dark"]{
+    --white: #FFFFFF;
+    --pink: #FBD3DE;
+    --pink-soft: #FDE9EF;
+    --pink-line: #F3B9CA;
+    --red: #E23A56;
+    --red-deep: #B81E38;
+    --ink: #2B1418;
+    --ink-soft: #8A6870;
+  }
+
+  html,body{ height: 100%; }
+  body{
+    margin:0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Albert Sans', system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,.serif{ font-family: 'Fraunces', Georgia, 'Times New Roman', serif; font-weight: 500; letter-spacing: -0.01em; }
+
+  a { color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; position:relative; }
+  .wrap-narrow{ max-width: 700px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- top bar ---------- */
+  header.bar{
+    position: sticky; top: 0; z-index: 60;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 16px);
+    padding-bottom: 16px;
+    background: color-mix(in srgb, var(--white) 90%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--pink-line);
+  }
+  .bar-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:1.15rem; }
+  .brand-mark{
+    width:30px; height:30px; border-radius: 50% 50% 50% 6px;
+    background: var(--red);
+    flex-shrink:0;
+  }
+  nav.links{ display:flex; gap: 28px; font-size: 0.95rem; }
+  nav.links a{ text-decoration:none; opacity:.75; transition: opacity .2s; }
+  nav.links a:hover{ opacity:1; color: var(--red-deep); }
+  @media (max-width: 640px){ nav.links{ display:none; } }
+
+  /* ---------- floating heart balloons ---------- */
+  .balloons{
+    position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1;
+  }
+  .balloon{
+    position:absolute; bottom:-60px;
+    width: 26px; height: 24px;
+    opacity: .85;
+    animation: floatUp linear infinite;
+  }
+  .balloon svg{ width:100%; height:auto; display:block; filter: drop-shadow(0 6px 10px rgba(226,58,86,0.18)); }
+  .balloon::after{
+    content:"";
+    position:absolute; left:50%; top:100%;
+    width:1px; height:34px;
+    background: color-mix(in srgb, var(--ink-soft) 55%, transparent);
+    transform: translateX(-50%);
+  }
+  @keyframes floatUp{
+    0%   { transform: translate(0,0) rotate(-4deg); opacity:0; }
+    8%   { opacity:.85; }
+    50%  { transform: translate(14px,-260px) rotate(4deg); }
+    92%  { opacity:.85; }
+    100% { transform: translate(-6px,-540px) rotate(-3deg); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .balloon{ animation: none; opacity:.6; bottom: 10%; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 110px;
+    background: var(--white);
+    overflow: hidden;
+  }
+  .hero-blob{
+    position:absolute; top:-120px; right:-140px;
+    width: 520px; height: 520px; border-radius:50%;
+    background: var(--pink);
+    z-index:0;
+  }
+  .hero-blob.two{
+    top: auto; bottom:-180px; left:-160px; right:auto;
+    width: 380px; height: 380px;
+    background: var(--pink-soft);
+  }
+  .hero .wrap{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 56px; align-items:center; z-index:2; }
+  @media (max-width: 860px){ .hero .wrap{ grid-template-columns: 1fr; } }
+
+  .eyebrow-note{ font-size: 0.92rem; color: var(--red-deep); margin: 0 0 18px; }
+  .hero h1{
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    margin: 0 0 22px;
+    color: var(--ink);
+  }
+  .hero p.lead{
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+  .cta-row{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 13px 26px; border-radius: 999px;
+    font-size: 0.98rem; font-weight: 600; text-decoration:none;
+    cursor:pointer; border: 1px solid transparent;
+    transition: transform .15s ease, opacity .15s ease, background .15s ease;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn-red{ background: var(--red); color: #fff; }
+  .btn-red:hover{ background: var(--red-deep); }
+  .btn-ghost{ border-color: var(--pink-line); color: var(--ink); background: var(--white); }
+  .btn-ghost:hover{ background: var(--pink-soft); }
+
+  .hero-card{
+    position:relative; z-index:2;
+    aspect-ratio: 1/1; border-radius: 32px;
+    background: var(--pink);
+    display:flex; align-items:center; justify-content:center;
+    border: 1px solid var(--pink-line);
+  }
+  .hero-card .heart-big svg{ width: 40%; height:auto; }
+  @media (max-width: 860px){ .hero-card{ max-width: 240px; margin: 0 auto; } }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 84px 0; position:relative; }
+  .section-alt{ background: var(--pink-soft); }
+  .section-head{ max-width: 620px; margin: 0 0 48px; }
+  .section-head p.kicker{ margin:0 0 10px; color: var(--red-deep); font-size: 0.95rem; }
+  .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.4rem); margin: 0 0 14px; }
+  .section-head p.sub{ color: var(--ink-soft); margin:0; font-size: 1.02rem; }
+
+  /* ---------- methodology ---------- */
+  .stages{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    background: var(--pink-line);
+    border-radius: 18px; overflow:hidden;
+    border: 1px solid var(--pink-line);
+  }
+  @media (max-width: 860px){ .stages{ grid-template-columns: 1fr; } }
+  .stage{ background: var(--white); padding: 30px 26px; }
+  .stage .num{ font-family:'Fraunces',serif; font-size: 2.1rem; color: var(--red); margin: 0 0 14px; }
+  .stage h3{ font-size: 1.12rem; margin: 0 0 10px; }
+  .stage p{ color: var(--ink-soft); font-size: 0.95rem; margin:0; }
+
+  /* ---------- pricing ---------- */
+  .tiers{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 940px){ .tiers{ grid-template-columns: 1fr; } }
+  .tier{
+    border-radius: 22px;
+    padding: 34px 30px;
+    background: var(--white);
+    border: 1px solid var(--pink-line);
+    position: relative;
+    display:flex; flex-direction:column;
+  }
+  .tier.featured{
+    border: 1.5px solid var(--red);
+    box-shadow: 0 18px 50px -28px color-mix(in srgb, var(--red) 60%, transparent);
+    transform: translateY(-6px);
+  }
+  .tier .badge{
+    position:absolute; top: -13px; right: 26px;
+    background: var(--red); color: #fff;
+    font-size: 0.78rem; font-weight: 700;
+    padding: 5px 12px; border-radius: 999px;
+  }
+  .tier h3{ margin: 0 0 6px; font-size: 1.3rem; }
+  .tier .tagline{ color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 22px; }
+  .tier .price-block{ margin-bottom: 22px; }
+  .tier .price-row{ display:flex; align-items:baseline; justify-content:space-between; font-size: 0.95rem; padding: 8px 0; border-top: 1px dashed var(--pink-line); }
+  .tier .price-row:first-child{ border-top:none; }
+  .tier .price-row .amount{ font-family:'Fraunces',serif; font-size: 1.15rem; color: var(--red-deep); }
+  .tier ul{ list-style:none; padding:0; margin: 0 0 28px; flex-grow:1; }
+  .tier li{ padding: 8px 0 8px 24px; position:relative; font-size: 0.94rem; color: var(--ink); border-top: 1px solid var(--pink-soft); }
+  .tier li:first-child{ border-top:none; }
+  .tier li::before{ content:"♥"; position:absolute; left:0; top:8px; color: var(--red); font-size: 0.8rem; }
+  .tier .btn{ width:100%; }
+
+  /* ---------- reviews ---------- */
+  .reviews{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 940px){ .reviews{ grid-template-columns: 1fr; } }
+  .review{
+    background: var(--white);
+    border: 1px solid var(--pink-line);
+    border-radius: 20px;
+    padding: 28px 26px;
+    display:flex; flex-direction:column; gap: 14px;
+  }
+  .review .stars{ color: var(--red); font-size: 1.05rem; letter-spacing: 2px; }
+  .review p.quote{ margin:0; color: var(--ink); font-size: 0.97rem; flex-grow:1; }
+  .review .who{ display:flex; align-items:center; gap: 10px; margin-top: 4px; }
+  .review .avatar{
+    width: 38px; height:38px; border-radius:50%;
+    background: var(--pink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; color: var(--red-deep); font-size: 1rem;
+  }
+  .review .name{ font-weight:600; font-size: 0.95rem; }
+
+  /* ---------- checkout & enrollment form ---------- */
+  .pay-card{
+    border-radius: 24px;
+    background: var(--pink);
+    border: 1px solid var(--pink-line);
+    color: var(--ink);
+    padding: 46px 40px;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  }
+  @media (max-width: 860px){ .pay-card{ grid-template-columns: 1fr; padding: 34px 24px; } }
+  .pay-card h2{ margin: 0 0 12px; font-size: 1.7rem; }
+  .pay-card p.pay-desc{ color: var(--ink-soft); margin: 0 0 20px; font-size: 0.96rem; }
+  
+  .pay-form{ display:flex; flex-direction:column; gap: 14px; background: var(--white); padding: 26px 24px; border-radius: 20px; border: 1px solid var(--pink-line); }
+  .form-group{ display:flex; flex-direction:column; gap: 6px; }
+  .form-group label{ font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+  .form-input{
+    width: 100%; padding: 12px 14px; border-radius: 12px;
+    border: 1px solid var(--pink-line); background: var(--white);
+    font-family: inherit; font-size: 0.95rem; color: var(--ink);
+    transition: border-color .2s;
+  }
+  .form-input:focus{ outline:none; border-color: var(--red); }
+  .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px){ .form-row{ grid-template-columns: 1fr; } }
+  
+  .promo-row{ display:flex; gap: 8px; }
+  .promo-input{ text-transform: uppercase; font-weight:600; letter-spacing: 1px; }
+  .btn-apply{
+    padding: 10px 18px; border-radius: 12px; background: var(--ink);
+    color: #fff; border:none; font-weight:600; font-size: 0.9rem; cursor:pointer;
+    transition: background .2s; flex-shrink: 0;
+  }
+  .btn-apply:hover{ background: var(--red-deep); }
+
+  .order-summary{
+    background: var(--white); border: 1px solid var(--pink-line);
+    border-radius: 18px; padding: 20px; margin-top: 20px;
+  }
+  .summary-title{ font-weight:600; font-size:1rem; margin-bottom:12px; border-bottom:1px solid var(--pink-line); padding-bottom:8px; font-family:'Fraunces',serif; }
+  .summary-row{ display:flex; justify-content:space-between; font-size: 0.92rem; margin-bottom: 8px; }
+  .summary-row.total{ border-top: 1px dashed var(--pink-line); padding-top: 10px; margin-top: 8px; font-weight:700; font-size: 1.05rem; color: var(--red-deep); }
+  .pay-note{ font-size: 0.88rem; color: var(--ink-soft); }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media (max-width: 780px){ .contact-grid{ grid-template-columns: 1fr; } }
+  .contact-card{
+    padding: 26px; border-radius: 18px;
+    border: 1px solid var(--pink-line);
+    text-decoration:none; background: var(--white);
+  }
+  .contact-card .label{ font-size: 0.85rem; color: var(--red-deep); margin-bottom: 8px; display:block; }
+  .contact-card .value{ font-family:'Fraunces',serif; font-size: 1.1rem; }
+
+  footer{
+    padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px));
+    text-align:center; color: var(--ink-soft); font-size: 0.85rem;
+    border-top: 1px solid var(--pink-line);
+  }
+  footer .confid{ margin-top: 8px; opacity: .85; }
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ animation: rise .7s ease both; }
+    @keyframes rise{ from{ opacity:0; transform: translateY(14px);} to{ opacity:1; transform:none;} }
+  }
+
+  :focus-visible{ outline: 2px solid var(--red); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-inner">
+    <div class="brand"><span class="brand-mark"></span>Nagendra Consultancy</div>
+    <nav class="links">
+      <a href="#method">Method</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#enroll">Enroll</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-blob two" aria-hidden="true"></div>
+  <div class="balloons" aria-hidden="true" id="balloons"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow-note">Private coaching, one client at a time</p>
+      <h1>Say the right thing.<br>Feel it, don't force it.</h1>
+      <p class="lead">Nagendra Consultancy Services helps you build real confidence in conversation, chemistry, and connection — grounded in mutual comfort and clear, enthusiastic consent at every step.</p>
+      <div class="cta-row">
+        <a href="#pricing" class="btn btn-red">See the plans</a>
+        <a href="#contact" class="btn btn-ghost">DM to enroll</a>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <span class="heart-big">
+        <svg viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg"><path fill="#E23A56" d="M16 29 2.6 16.7C-1.8 12.6.3 4.9 6.2 3.3c3.4-.9 6.9.4 9 3.1 2.1-2.7 5.6-4 9-3.1 5.9 1.6 8 9.3 3.6 13.4z"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">The methodology</p>
+      <h2>A four-stage path, at your own pace</h2>
+      <p class="sub">Every stage is built around checking in with the other person, not guessing — comfort and consent come before anything else.</p>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <p class="num">1</p>
+        <h3>The Approach</h3>
+        <p>Finding the right opener for the context and tone, without the cringe or the script-read feeling.</p>
+      </div>
+      <div class="stage">
+        <p class="num">2</p>
+        <h3>Comfort &amp; Hook</h3>
+        <p>Active listening, playful teasing, and building real emotional safety before anything else.</p>
+      </div>
+      <div class="stage">
+        <p class="num">3</p>
+        <h3>Physical Comfort</h3>
+        <p>Reading the room together — checking in, asking, and only moving forward when it's clearly welcome on both sides.</p>
+      </div>
+      <div class="stage">
+        <p class="num">4</p>
+        <h3>Deeper Connection</h3>
+        <p>Pacing intimacy honestly, keeping communication open, and making sure enthusiasm is mutual throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Rate card</p>
+      <h2>Pick a plan</h2>
+      <p class="sub">Friends and homies get a standing discount. Enter your promo code at checkout, or message directly to get one.</p>
+    </div>
+    <div class="tiers">
+
+      <div class="tier">
+        <h3>The Starter</h3>
+        <p class="tagline">Basic Plan</p>
+        <div class="price-block">
+          <div class="price-row"><span>Homies / Friends</span><span class="amount">Free</span></div>
+          <div class="price-row"><span>Regular client</span><span class="amount">₹500/mo</span></div>
+        </div>
+        <ul>
+          <li>Opening mastery — clean conversation starters</li>
+          <li>Chat screenshot audits &amp; rewrites</li>
+          <li>Custom icebreakers for DMs and dating apps</li>
+          <li>Vibe calibration — sound curious, not interrogating</li>
+        </ul>
+        <a href="#enroll" class="btn btn-red" onclick="selectPlan('Starter')">Choose Starter</a>
+      </div>
+
+      <div class="tier featured">
+        <span class="badge">Most booked</span>
+        <h3>Physical Chemistry</h3>
+        <p class="tagline">Pro Plan</p>
+        <div class="price-block">
+          <div class="price-row"><span>Homies / Friends</span><span class="amount">₹1,000/mo</span></div>
+          <div class="price-row"><span>Regular client</span><span class="amount">₹1,500/mo</span></div>
+        </div>
+        <ul>
+          <li>Everything in Starter, plus:</li>
+          <li>First-kiss pacing — reading warmth, asking, not assuming</li>
+          <li>Natural hand-holding, always led by mutual comfort</li>
+          <li>Body language that keeps both people relaxed</li>
+          <li>Low-pressure, high-chemistry date ideas</li>
+        </ul>
+        <a href="#enroll" class="btn btn-red" onclick="selectPlan('Pro')">Choose Pro</a>
+      </div>
+
+      <div class="tier">
+        <h3>The Intimacy Suite</h3>
+        <p class="tagline">Ultra Pro Plan</p>
+        <div class="price-block">
+          <div class="price-row"><span>Homies / Friends</span><span class="amount">₹2,000/mo</span></div>
+          <div class="price-row"><span>Regular client</span><span class="amount">₹3,000/mo</span></div>
+        </div>
+        <ul>
+          <li>Everything in Pro, plus:</li>
+          <li>Late-night texting — building warmth without pressure</li>
+          <li>Pacing closeness at a speed you're both comfortable with</li>
+          <li>Ongoing check-ins on comfort and enthusiasm</li>
+          <li>On-call support if you're stuck mid-date</li>
+        </ul>
+        <a href="#enroll" class="btn btn-red" onclick="selectPlan('UltraPro')">Choose Ultra Pro</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">What clients say</p>
+      <h2>Recent reviews</h2>
+      <p class="sub">A few notes from people who've been through the program.</p>
+    </div>
+    <div class="reviews">
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I used to like a girl, but I was too afraid to talk. That's when I got to know about this consultancy service, and honestly Nagendra helped me a lot — now my dream girl talks to me daily and things are going very pretty. I would definitely recommend this consultancy. Thank you Nagendra."</p>
+        <div class="who">
+          <div class="avatar">A</div>
+          <div class="name">Ayush Kumar</div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Ayush is my friend, and he told me there was a girl he liked but wanted me to make her mine. After a while he started talking to her more often and there was no space left for me to come in. A friend suggested this consultancy, so I purchased the Pro plan and things started to change — now she has started replying to my messages, and sometimes she even messages me first. I am very happy. Thank you."</p>
+        <div class="who">
+          <div class="avatar">V</div>
+          <div class="name">Vaibhav Sahu</div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I am actually the girl both of them were talking about. At first their messages were pretty goofy, but then something changed and I started finding the chats interesting, which left me really confused about who to choose. A friend suggested I talk to Nagendra. After speaking with him, I realized I don't actually like either of those two — I really like Nagendra now. So sorry, Ayush and Vaibhav. And Nagendra, please reply to me! ❤️"</p>
+        <div class="who">
+          <div class="avatar">P</div>
+          <div class="name">Priyanka</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="enroll" class="section-alt">
+  <div class="wrap">
+    <div class="pay-card">
+      <div class="pay-info">
+        <h2>Checkout &amp; Enrollment</h2>
+        <p class="pay-desc">Fill in your details, select your coaching plan, and enter your promo code if you have one. Payments are processed securely via Razorpay (UPI, Cards, Netbanking, Wallets).</p>
+        
+        <div class="order-summary" id="orderSummary" style="display:none;">
+          <div class="summary-title">Order Summary</div>
+          <div class="summary-row">
+            <span>Selected Plan:</span>
+            <strong id="sumPlanName">-</strong>
+          </div>
+          <div class="summary-row">
+            <span>Standard Price:</span>
+            <span id="sumRegPrice">₹0</span>
+          </div>
+          <div class="summary-row" id="sumDiscountRow" style="display:none; color: #15803d; font-weight:600;">
+            <span>Friend Discount:</span>
+            <span id="sumSavings">-₹0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Payable:</span>
+            <span id="sumFinalPrice">₹0</span>
+          </div>
+        </div>
+
+        <p class="pay-note" id="planNote" style="margin-top:20px;">Pick a plan above or select from the dropdown to start.</p>
+      </div>
+
+      <form class="pay-form" onsubmit="event.preventDefault(); startCheckout();">
+        <div class="form-group">
+          <label for="planSelect">Coaching Plan *</label>
+          <select id="planSelect" class="form-input" onchange="onPlanSelectChange()" required>
+            <option value="">Select a plan…</option>
+            <option value="Starter">The Starter — ₹500/mo (Free for Friends)</option>
+            <option value="Pro">Physical Chemistry (Pro) — ₹1,500/mo (₹1,000 for Friends)</option>
+            <option value="UltraPro">The Intimacy Suite (Ultra Pro) — ₹3,000/mo (₹2,000 for Friends)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="custName">Full Name *</label>
+          <input type="text" id="custName" class="form-input" placeholder="e.g. Ayush Kumar" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="custPhone">Phone Number *</label>
+            <input type="tel" id="custPhone" class="form-input" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group">
+            <label for="custEmail">Email Address *</label>
+            <input type="email" id="custEmail" class="form-input" placeholder="e.g. ayush@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="promoCode">Promo Code (For Homies &amp; Friends)</label>
+          <div class="promo-row">
+            <input type="text" id="promoCode" class="form-input promo-input" placeholder="Enter promo code here">
+            <button type="button" class="btn-apply" onclick="applyPromoCode()">Apply</button>
+          </div>
+          <p id="promoStatus" style="font-size:0.85rem; margin:6px 0 0; font-weight:500; min-height:18px;"></p>
+        </div>
+
+        <button type="submit" class="pay-method" id="payNowBtn" style="width:100%; justify-content:center; font-weight:600; border:1px solid var(--red); color:#fff; background:var(--red); padding:16px; margin-top:8px;" disabled>
+          <span id="payNowLabel">Select a plan to proceed</span>
+        </button>
+        
+        <p id="payStatus" style="font-size:0.9rem; margin-top:8px; font-weight:500; text-align:center;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Get in touch</p>
+      <h2>Start with a message</h2>
+      <p class="sub">All conversations are kept private. Reach out on whichever you use most.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://wa.me/916261289665">
+        <span class="label">WhatsApp</span>
+        <span class="value">+91 62612 89665</span>
+      </a>
+      <a class="contact-card" href="https://instagram.com/inactivenagendra">
+        <span class="label">Instagram</span>
+        <span class="value">@inactivenagendra</span>
+      </a>
+      <a class="contact-card" href="mailto:nagendrasinghchouhan298@gmail.com">
+        <span class="label">Email</span>
+        <span class="value">nagendrasinghchouhan298@gmail.com</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap-narrow">
+    <div>Nagendra Consultancy Services — private coaching, kept confidential.</div>
+    <div class="confid">All guidance is consent-first: nothing here is a substitute for asking directly and respecting a clear "no."</div>
+  </div>
+</footer>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  // scatter floating heart balloons
+  (function(){
+    var container = document.getElementById('balloons');
+    var count = 7;
+    for (var i = 0; i < count; i++){
+      var b = document.createElement('div');
+      b.className = 'balloon';
+      var left = Math.random() * 92;
+      var size = 18 + Math.random() * 20;
+      var duration = 9 + Math.random() * 7;
+      var delay = Math.random() * 10;
+      b.style.left = left + '%';
+      b.style.width = size + 'px';
+      b.style.height = (size * 0.92) + 'px';
+      b.style.animationDuration = duration + 's';
+      b.style.animationDelay = '-' + delay + 's';
+      var fill = (i % 3 === 0) ? '#F3B9CA' : '#E23A56';
+      b.innerHTML = '<svg viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg"><path fill="' + fill + '" d="M16 29 2.6 16.7C-1.8 12.6.3 4.9 6.2 3.3c3.4-.9 6.9.4 9 3.1 2.1-2.7 5.6-4 9-3.1 5.9 1.6 8 9.3 3.6 13.4z"/></svg>';
+      container.appendChild(b);
+    }
+  })();
+
+  // --- Razorpay checkout ---
+  var RAZORPAY_KEY_ID = 'rzp_test_Tgz2s0OYdLfxD6';
+
+  var PLANS = {
+    'Starter': { name: 'The Starter', regular: 500, friend: 0 },
+    'Pro': { name: 'Physical Chemistry (Pro)', regular: 1500, friend: 1000 },
+    'UltraPro': { name: 'The Intimacy Suite (Ultra Pro)', regular: 3000, friend: 2000 }
+  };
+
+  var selectedPlanKey = null;
+  var appliedPromo = false;
+
+  function selectPlan(key){
+    selectedPlanKey = key;
+    document.getElementById('planSelect').value = key;
+    updateCheckoutSummary();
+    document.getElementById('enroll').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function onPlanSelectChange(){
+    selectedPlanKey = document.getElementById('planSelect').value;
+    updateCheckoutSummary();
+  }
+
+  function applyPromoCode(){
+    var codeInput = document.getElementById('promoCode').value.trim().toUpperCase();
+    var promoMsg = document.getElementById('promoStatus');
+    if (!codeInput){
+      appliedPromo = false;
+      promoMsg.textContent = '';
+      updateCheckoutSummary();
+      return;
+    }
+    if (codeInput === 'MKCUK'){
+      appliedPromo = true;
+      promoMsg.style.color = '#15803d';
+      promoMsg.textContent = '🎉 Promo code applied! Homie / Friend discount activated.';
+    } else {
+      appliedPromo = false;
+      promoMsg.style.color = 'var(--red-deep)';
+      promoMsg.textContent = '❌ Invalid promo code.';
+    }
+    updateCheckoutSummary();
+  }
+
+  function updateCheckoutSummary(){
+    var plan = PLANS[selectedPlanKey];
+    var summaryEl = document.getElementById('orderSummary');
+    var planNoteEl = document.getElementById('planNote');
+    var btn = document.getElementById('payNowBtn');
+    var label = document.getElementById('payNowLabel');
+
+    if (!plan){
+      summaryEl.style.display = 'none';
+      planNoteEl.textContent = 'Pick a plan above or select from the dropdown to start.';
+      btn.disabled = true;
+      label.textContent = 'Select a plan to proceed';
+      return;
+    }
+
+    summaryEl.style.display = 'block';
+    planNoteEl.textContent = 'Selected: ' + plan.name;
+
+    var regPrice = plan.regular;
+    var finalPrice = appliedPromo ? plan.friend : plan.regular;
+    var savings = regPrice - finalPrice;
+
+    document.getElementById('sumPlanName').textContent = plan.name;
+    document.getElementById('sumRegPrice').textContent = '₹' + regPrice;
+    
+    var discountRow = document.getElementById('sumDiscountRow');
+    if (appliedPromo && savings > 0){
+      discountRow.style.display = 'flex';
+      document.getElementById('sumSavings').textContent = '-₹' + savings;
+    } else if (appliedPromo && finalPrice === 0){
+      discountRow.style.display = 'flex';
+      document.getElementById('sumSavings').textContent = 'FREE (100% OFF)';
+    } else {
+      discountRow.style.display = 'none';
+    }
+
+    document.getElementById('sumFinalPrice').textContent = finalPrice === 0 ? 'FREE' : ('₹' + finalPrice);
+
+    btn.disabled = false;
+    if (finalPrice === 0){
+      label.textContent = 'Complete Free Enrollment 🎉';
+    } else {
+      label.textContent = 'Proceed to Pay ₹' + finalPrice;
+    }
+  }
+
+  function setStatus(msg, isError){
+    var el = document.getElementById('payStatus');
+    el.textContent = msg || '';
+    el.style.color = isError ? 'var(--red-deep)' : '#15803d';
+  }
+
+  async function startCheckout(){
+    if (!selectedPlanKey || !PLANS[selectedPlanKey]) {
+      setStatus('Please select a plan first.', true);
+      return;
+    }
+
+    var name = document.getElementById('custName').value.trim();
+    var phone = document.getElementById('custPhone').value.trim();
+    var email = document.getElementById('custEmail').value.trim();
+    var promoCode = document.getElementById('promoCode').value.trim().toUpperCase();
+
+    if (!name || !phone || !email){
+      setStatus('Please fill out your Name, Phone, and Email.', true);
+      return;
+    }
+
+    var plan = PLANS[selectedPlanKey];
+    var isFriend = (promoCode === 'MKCUK');
+    var finalPriceRupees = isFriend ? plan.friend : plan.regular;
+
+    var btn = document.getElementById('payNowBtn');
+    btn.disabled = true;
+
+    if (finalPriceRupees === 0){
+      setStatus('Registering your free enrollment…', false);
+      try {
+        var res = await fetch('/api/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: 0,
+            currency: 'INR',
+            plan: plan.name,
+            promoCode: promoCode,
+            customer: { name: name, phone: phone, email: email }
+          })
+        });
+        var data = await res.json();
+        if (data.free){
+          setStatus('🎉 Congratulations ' + name + '! You\'re enrolled for FREE in ' + plan.name + '. Nagendra will connect with you at ' + phone + ' shortly.', false);
+        } else {
+          throw new Error(data.error || 'Free enrollment failed');
+        }
+      } catch (err){
+        console.error(err);
+        setStatus('Free enrollment failed: ' + err.message, true);
+        btn.disabled = false;
+      }
+      return;
+    }
+
+    setStatus('Creating your order…', false);
+    var amountPaise = finalPriceRupees * 100;
+
+    let order;
+    try {
+      var res = await fetch('/api/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: amountPaise,
+          currency: 'INR',
+          plan: plan.name,
+          promoCode: promoCode,
+          receipt: 'ncs_' + Date.now(),
+          customer: { name: name, phone: phone, email: email }
+        })
+      });
+      if (!res.ok){
+        var errBody = await res.json().catch(function(){ return {}; });
+        throw new Error(errBody.error || ('Order creation failed (' + res.status + ')'));
+      }
+      order = await res.json();
+    } catch (err){
+      console.error(err);
+      setStatus('Could not start checkout: ' + err.message, true);
+      btn.disabled = false;
+      return;
+    }
+
+    setStatus('', false);
+
+    var options = {
+      key: RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: order.currency,
+      name: 'Nagendra Consultancy Services',
+      description: plan.name + (isFriend ? ' (Friend Rate)' : ''),
+      order_id: order.order_id,
+      prefill: {
+        name: name,
+        email: email,
+        contact: phone
+      },
+      notes: {
+        customer_name: name,
+        customer_phone: phone,
+        customer_email: email,
+        promo_code: isFriend ? 'MKCUK' : 'NONE',
+        plan: plan.name
+      },
+      handler: async function (response){
+        setStatus('Verifying payment…', false);
+        try {
+          var verifyRes = await fetch('/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              plan: plan.name,
+              customer: { name: name, phone: phone, email: email }
+            })
+          });
+          var verifyBody = await verifyRes.json().catch(function(){ return {}; });
+          if (verifyRes.ok && verifyBody.success){
+            setStatus('Payment verified! ' + name + ', you\'re enrolled in ' + plan.name + '. Details sent to ' + phone + '.', false);
+          } else {
+            setStatus('Payment went through but verification failed. Please contact Nagendra directly with Payment ID: ' + response.razorpay_payment_id, true);
+          }
+        } catch (err){
+          console.error(err);
+          setStatus('Payment went through but verification could not be confirmed. Payment ID: ' + response.razorpay_payment_id, true);
+        }
+        btn.disabled = false;
+      },
+      modal: {
+        ondismiss: function (){
+          setStatus('Checkout closed — no payment was made.', false);
+          btn.disabled = false;
+        }
+      },
+      theme: { color: '#E23A56' }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.on('payment.failed', function (response){
+      console.error('Payment failed:', response.error);
+      setStatus('Payment failed: ' + (response.error && response.error.description ? response.error.description : 'please try again.'), true);
+      btn.disabled = false;
+    });
+    rzp.open();
+  }
+</script>
+
+</body>
+</html>

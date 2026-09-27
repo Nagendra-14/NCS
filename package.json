@@ -1,0 +1,14 @@
+{
+  "name": "ncs-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nagendra Consultancy Services website with Razorpay Standard Checkout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "razorpay": "^2.9.4"
+  }
+}
