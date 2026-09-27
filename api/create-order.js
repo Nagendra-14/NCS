@@ -10,12 +10,28 @@ const PLAN_PRICES = {
 };
 
 module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
-  const { amount, currency, receipt, plan, promoCode, customer } = req.body || {};
+  let body = req.body;
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch (e) { body = {}; }
+  }
+  body = body || {};
+
+  const { amount, currency, receipt, plan, promoCode, customer } = body;
   const isFriend = (promoCode || '').toString().trim().toUpperCase() === 'MKCUK';
   
   let targetPriceRupees;
@@ -39,7 +55,7 @@ module.exports = async function handler(req, res) {
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
   if (!keyId || !keySecret) {
-    res.status(401).json({ error: 'Razorpay credentials are not configured on the server. Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in Vercel environment variables.' });
+    res.status(401).json({ error: 'Razorpay credentials are not configured on the server. Please add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to Vercel Environment Variables.' });
     return;
   }
 
@@ -73,6 +89,6 @@ module.exports = async function handler(req, res) {
     });
   } catch (err) {
     console.error('Razorpay order creation failed:', err);
-    res.status(500).json({ error: 'Could not create the order. Please try again shortly.' });
+    res.status(500).json({ error: 'Could not create order: ' + (err.description || err.message || 'Razorpay API error') });
   }
 };
