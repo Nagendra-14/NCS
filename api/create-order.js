@@ -1,8 +1,11 @@
 const Razorpay = require('razorpay');
 
 const PLAN_PRICES = {
+  'Starter': { regular: 500, friend: 0 },
   'The Starter': { regular: 500, friend: 0 },
+  'Pro': { regular: 1500, friend: 1000 },
   'Physical Chemistry (Pro)': { regular: 1500, friend: 1000 },
+  'UltraPro': { regular: 3000, friend: 2000 },
   'The Intimacy Suite (Ultra Pro)': { regular: 3000, friend: 2000 }
 };
 
