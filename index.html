@@ -716,6 +716,7 @@
 
   async function apiPost(endpoint, payload) {
     var urls = ['/api/' + endpoint + '.js', '/api/' + endpoint];
+    var lastRes = null;
     for (var i = 0; i < urls.length; i++) {
       try {
         var r = await fetch(urls[i], {
@@ -723,9 +724,11 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        if (r.status !== 404) return r;
+        lastRes = r;
+        if (r.status !== 404 && r.status !== 405) return r;
       } catch (e) {}
     }
+    if (lastRes) return lastRes;
     return new Response(JSON.stringify({ error: 'API endpoint not reachable. Please check Vercel deployment logs.' }), {
       status: 404,
       headers: { 'Content-Type': 'application/json' }
@@ -842,6 +845,11 @@
             setStatus('Payment went through but verification failed. Please contact Nagendra directly with Payment ID: ' + response.razorpay_payment_id, true);
           }
         } catch (err){
+          console.error(err);
+          setStatus('Payment went through but verification could not be confirmed. Payment ID: ' + response.razorpay_payment_id, true);
+        }
+        btn.disabled = false;
+      },
       modal: {
         ondismiss: function (){
           setStatus('Checkout closed — no payment was made.', false);

@@ -51,8 +51,8 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  const keyId = process.env.RAZORPAY_KEY_ID || 'rzp_test_Tgz2s0OYdLfxD6';
+  const keySecret = process.env.RAZORPAY_KEY_SECRET || 'eXjRtrPPKhblG13pQMs7T1Fa';
 
   if (!keyId || !keySecret) {
     res.status(401).json({ error: 'Razorpay credentials are not configured on the server. Please add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to Vercel Environment Variables.' });
