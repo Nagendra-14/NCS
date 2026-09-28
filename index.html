@@ -220,7 +220,165 @@
   .tier li{ padding: 8px 0 8px 24px; position:relative; font-size: 0.94rem; color: var(--ink); border-top: 1px solid var(--pink-soft); }
   .tier li:first-child{ border-top:none; }
   .tier li::before{ content:"♥"; position:absolute; left:0; top:8px; color: var(--red); font-size: 0.8rem; }
+  .tier li.special-perk{
+    background: var(--pink-soft);
+    border-radius: 10px;
+    padding: 10px 12px 10px 28px;
+    margin-top: 6px;
+    border: 1px solid var(--pink-line);
+    color: var(--red-deep);
+    font-weight: 600;
+  }
+  .tier li.special-perk::before{ left: 10px; top: 10px; content:"★"; }
   .tier .btn{ width:100%; }
+
+  .advice-banner{
+    margin-top: 28px;
+    background: var(--white);
+    border: 1.5px solid var(--red);
+    border-radius: 20px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .advice-banner-text h3{ margin: 0 0 6px; font-size: 1.25rem; color: var(--ink); }
+  .advice-banner-text p{ margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+  .advice-pills{ display: flex; gap: 12px; flex-wrap: wrap; }
+  .advice-pill{
+    background: var(--pink);
+    border: 1px solid var(--pink-line);
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .advice-pill strong{ color: var(--red-deep); font-family: 'Fraunces', serif; font-size: 1.05rem; display: block; }
+
+  /* ---------- special mentor (Amandeep Bhurtiya) ---------- */
+  .mentor-card{
+    background: var(--pink-soft);
+    border: 1.5px solid var(--pink-line);
+    border-radius: 26px;
+    padding: 42px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  @media (max-width: 860px){
+    .mentor-card{ grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+  }
+  .mentor-photo-wrap{
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 2px solid var(--red);
+    background: var(--pink);
+    box-shadow: 0 18px 44px -20px color-mix(in srgb, var(--red) 50%, transparent);
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .mentor-photo-wrap img{
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .mentor-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .mentor-content h2{
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .mentor-sub{
+    font-family: 'Fraunces', serif;
+    color: var(--red-deep);
+    font-size: 1.08rem;
+    margin: 0 0 18px;
+  }
+  .mentor-bio{
+    color: var(--ink);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin: 0 0 24px;
+    background: var(--white);
+    padding: 20px 22px;
+    border-radius: 16px;
+    border: 1px solid var(--pink-line);
+  }
+  .mentor-stats{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 600px){ .mentor-stats{ grid-template-columns: 1fr; } }
+  .mentor-stat{
+    background: var(--white);
+    border: 1px solid var(--pink-line);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .mentor-stat .stat-num{
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    color: var(--red);
+    font-weight: 600;
+    display: block;
+  }
+  .mentor-stat .stat-label{
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+  }
+  .mentor-perks{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 600px){ .mentor-perks{ grid-template-columns: 1fr; } }
+  .mentor-perk-box{
+    background: var(--white);
+    border: 1.5px solid var(--red);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .mentor-perk-box .perk-plan{
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--red-deep);
+  }
+  .mentor-perk-box .perk-title{
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+  .mentor-perk-box .perk-desc{
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
 
   /* ---------- reviews ---------- */
   .reviews{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -321,6 +479,7 @@
     <nav class="links">
       <a href="#method">Method</a>
       <a href="#pricing">Pricing</a>
+      <a href="#amandeep">Amandeep</a>
       <a href="#reviews">Reviews</a>
       <a href="#enroll">Enroll</a>
       <a href="#contact">Contact</a>
@@ -421,6 +580,7 @@
           <li>Natural hand-holding, always led by mutual comfort</li>
           <li>Body language that keeps both people relaxed</li>
           <li>Low-pressure, high-chemistry date ideas</li>
+          <li class="special-perk">2 weekly advice from the great Amandeep Bhurtiya</li>
         </ul>
         <a href="#enroll" class="btn btn-red" onclick="selectPlan('Pro')">Choose Pro</a>
       </div>
@@ -438,10 +598,80 @@
           <li>Pacing closeness at a speed you're both comfortable with</li>
           <li>Ongoing check-ins on comfort and enthusiasm</li>
           <li>On-call support if you're stuck mid-date</li>
+          <li class="special-perk">5 weekly advice from the great Amandeep Bhurtiya</li>
         </ul>
         <a href="#enroll" class="btn btn-red" onclick="selectPlan('UltraPro')">Choose Ultra Pro</a>
       </div>
 
+    </div>
+
+    <div class="advice-banner">
+      <div class="advice-banner-text">
+        <h3>✨ Special Inclusion on Pro &amp; Ultra Pro Plans</h3>
+        <p>On the <strong>Pro</strong> and <strong>Ultra Pro</strong> plans, you get direct weekly advice from the great <strong>Amandeep Bhurtiya</strong>.</p>
+      </div>
+      <div class="advice-pills">
+        <div class="advice-pill">
+          <span>Pro Plan</span>
+          <strong>2 Advice / Week</strong>
+        </div>
+        <div class="advice-pill">
+          <span>Ultra Pro Plan</span>
+          <strong>5 Advice / Week</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="amandeep">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Special Association &amp; Master Advisor</p>
+      <h2>Meet the Great Amandeep Bhurtiya</h2>
+      <p class="sub">Now officially associated with Nagendra Consultancy Services to guide our Pro and Ultra Pro clients every week.</p>
+    </div>
+
+    <div class="mentor-card">
+      <div class="mentor-photo-wrap">
+        <img src="/amandeep.jpg" alt="Amandeep Bhurtiya" loading="lazy">
+      </div>
+      <div class="mentor-content">
+        <span class="mentor-badge">★ Legendary Charmer &amp; Author</span>
+        <h2>Amandeep Bhurtiya</h2>
+        <p class="mentor-sub">Author of <em>'Jism Ki Bhuk'</em> &amp; <em>'Aurat Ka Badan'</em></p>
+        <p class="mentor-bio">
+          He is a well-known charmer who has captivated many women with his appeal, and stories of his exploits are told far and wide. Sometimes, just a single glance from him is enough to make women lose their composure. After handling 526 girlfriends and writing two books—'Jism Ki Bhuk' and 'Aurat Ka Badan'—he has finally associated with us. He is here to share his unique art and wisdom with all of you!
+        </p>
+
+        <div class="mentor-stats">
+          <div class="mentor-stat">
+            <span class="stat-num">526</span>
+            <span class="stat-label">Girlfriends Handled</span>
+          </div>
+          <div class="mentor-stat">
+            <span class="stat-num">2 Books</span>
+            <span class="stat-label">'Jism Ki Bhuk' &amp; 'Aurat Ka Badan'</span>
+          </div>
+          <div class="mentor-stat">
+            <span class="stat-num">1 Glance</span>
+            <span class="stat-label">Unmatched Appeal &amp; Wisdom</span>
+          </div>
+        </div>
+
+        <div class="mentor-perks">
+          <div class="mentor-perk-box">
+            <span class="perk-plan">Pro Plan Benefit</span>
+            <strong class="perk-title">2 Advice Every Week</strong>
+            <p class="perk-desc">Get 2 weekly advice sessions from the great Amandeep Bhurtiya included with Physical Chemistry (Pro).</p>
+          </div>
+          <div class="mentor-perk-box">
+            <span class="perk-plan">Ultra Pro Plan Benefit</span>
+            <strong class="perk-title">5 Advice Every Week</strong>
+            <p class="perk-desc">Get 5 weekly advice sessions from the great Amandeep Bhurtiya included with The Intimacy Suite (Ultra Pro).</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
