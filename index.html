@@ -1009,7 +1009,8 @@
         });
         var data = await res.json();
         if (res.ok && data.free){
-          setStatus('🎉 Congratulations ' + name + '! You\'re enrolled for FREE in ' + plan.name + '. Nagendra will connect with you at ' + phone + ' shortly.', false);
+          setStatus('🎉 Congratulations ' + name + '! Redirecting to your VIP Lucky Draw…', false);
+          window.location.href = '/reward.html?name=' + encodeURIComponent(name) + '&plan=' + encodeURIComponent(plan.name);
         } else {
           throw new Error(data.error || 'Free enrollment failed');
         }
@@ -1068,26 +1069,19 @@
         plan: plan.name
       },
       handler: async function (response){
-        setStatus('Verifying payment…', false);
+        setStatus('Payment successful! Redirecting to your VIP Lucky Draw Scratch Card…', false);
         try {
-          var verifyRes = await apiPost('verify-payment', {
+          await apiPost('verify-payment', {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
             plan: plan.name,
             customer: { name: name, phone: phone, email: email }
           });
-          var verifyBody = await verifyRes.json().catch(function(){ return {}; });
-          if (verifyRes.ok && verifyBody.success){
-            setStatus('Payment verified! ' + name + ', you\'re enrolled in ' + plan.name + '. Details sent to ' + phone + '.', false);
-          } else {
-            setStatus('Payment went through but verification failed. Please contact Nagendra directly with Payment ID: ' + response.razorpay_payment_id, true);
-          }
         } catch (err){
           console.error(err);
-          setStatus('Payment went through but verification could not be confirmed. Payment ID: ' + response.razorpay_payment_id, true);
         }
-        btn.disabled = false;
+        window.location.href = '/reward.html?name=' + encodeURIComponent(name) + '&plan=' + encodeURIComponent(plan.name);
       },
       modal: {
         ondismiss: function (){

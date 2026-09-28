@@ -2,6 +2,7 @@
   "version": 2,
   "builds": [
     { "src": "index.html", "use": "@vercel/static" },
+    { "src": "reward.html", "use": "@vercel/static" },
     { "src": "amandeep.jpg", "use": "@vercel/static" },
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
@@ -9,6 +10,7 @@
     { "src": "/api/create-order(\\.js)?", "dest": "/api/create-order.js" },
     { "src": "/api/verify-payment(\\.js)?", "dest": "/api/verify-payment.js" },
     { "src": "/amandeep\\.jpg", "dest": "/amandeep.jpg" },
+    { "src": "/reward(\\.html)?", "dest": "/reward.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
